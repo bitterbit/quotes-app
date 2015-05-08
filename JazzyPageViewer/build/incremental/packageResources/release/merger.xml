@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\src\main\res" >
+            <file
+                name="ic_launcher"
+                path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\src\main\res\drawable-hdpi\ic_launcher.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\src\main\res\drawable-mdpi\ic_launcher.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\src\main\res\drawable-xhdpi\ic_launcher.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\src\main\res\drawable-xxhdpi\ic_launcher.png"
+                qualifiers="xxhdpi"
+                type="drawable" />
+            <file
+                path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\src\main\res\values\attrs.xml"
+                qualifiers="" >
+                <declare-styleable name="JazzyViewPager" >
+                    <attr name="style" >
+                        <enum
+                            name="standard"
+                            value="0" />
+                        <enum
+                            name="tablet"
+                            value="1" />
+                        <enum
+                            name="cubein"
+                            value="2" />
+                        <enum
+                            name="cubeout"
+                            value="3" />
+                        <enum
+                            name="flipvertical"
+                            value="4" />
+                        <enum
+                            name="fliphorizontal"
+                            value="5" />
+                        <enum
+                            name="stack"
+                            value="6" />
+                        <enum
+                            name="zoomin"
+                            value="7" />
+                        <enum
+                            name="zoomout"
+                            value="8" />
+                        <enum
+                            name="rotateup"
+                            value="9" />
+                        <enum
+                            name="rotatedown"
+                            value="10" />
+                        <enum
+                            name="accordion"
+                            value="11" />
+                    </attr>
+                    <attr
+                        name="fadeEnabled"
+                        format="boolean" />
+                    <attr
+                        name="outlineEnabled"
+                        format="boolean" />
+                    <attr
+                        name="outlineColor"
+                        format="color|reference" />
+                </declare-styleable>
+            </file>
+            <file
+                path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\src\main\res\values\colors.xml"
+                qualifiers="" >
+                <color name="holo_blue" >#FF33E5B5
+                </color>
+            </file>
+            <file
+                path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\src\main\res\values\ids.xml"
+                qualifiers="" >
+                <item
+                    name="jazzy_key"
+                    type="id"/>
+            </file>
+            <file
+                path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\src\main\res\values\strings.xml"
+                qualifiers="" >
+                <string name="app_name" >JazzyViewPager
+                </string>
+
+                <string-array name="jazzy_effects" >
+                    <item>
+Standard
+                    </item>
+                    <item>
+Tablet
+                    </item>
+                    <item>
+CubeIn
+                    </item>
+                    <item>
+CubeOut
+                    </item>
+                    <item>
+FlipVertical
+                    </item>
+                    <item>
+FlipHorizontal
+                    </item>
+                    <item>
+Stack
+                    </item>
+                    <item>
+ZoomIn
+                    </item>
+                    <item>
+ZoomOut
+                    </item>
+                    <item>
+RotateUp
+                    </item>
+                    <item>
+RotateDown
+                    </item>
+                    <item>
+Accordion
+                    </item>
+                </string-array>
+            </file>
+            <file
+                path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\src\main\res\values\styles.xml"
+                qualifiers="" >
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme.Light" >
+
+                    <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+                    -->
+                </style>
+
+                <style
+                    name="AppTheme"
+                    parent="AppBaseTheme" >
+
+                    <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+                </style>
+            </file>
+        </source>
+        <source path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\build\res\rs\release" />
+        <source path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\build\res\generated\release" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="C:\Users\Gal\AndroidStudioProjects\Quotes\JazzyPageViewer\src\release\res" />
+    </dataSet>
+
+</merger>

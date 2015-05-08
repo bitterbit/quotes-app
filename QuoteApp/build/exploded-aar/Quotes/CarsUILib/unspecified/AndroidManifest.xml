@@ -1,0 +1,8 @@
+<!-- From: file:/C:/Users/Gal/AndroidStudioProjects/Quotes/CarsUILib/src/main/AndroidManifest.xml --><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.fima.cardsui">
+    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="16"/>
+
+    <application android:allowBackup="true" android:icon="@drawable/ic_launcher" android:label="@string/app_name">
+
+    </application>
+
+</manifest>

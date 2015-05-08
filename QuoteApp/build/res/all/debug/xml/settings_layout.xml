@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+        
+    <PreferenceCategory android:title="About" >
+        <!-- go to website -->
+        <Preference 
+            android:title="GT Apps"                 
+            android:summary="App by Gal Tashma" 
+            />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="3rd party librarys" >
+        <Preference android:title="Open Source Licenses"/>       
+        <!-- 
+        <Preference android:title="JazzyPageViewer"/>       
+       	<Preference android:title="CardsUI"/>       
+       	<Preference android:title="UndoBar"/>       
+       	<Preference android:title="SlidingUpPanel"/>       --> 
+    </PreferenceCategory>
+
+</PreferenceScreen><!-- From: file:/C:/Users/Gal/AndroidStudioProjects/Quotes/QuoteApp/src/main/res/xml/settings_layout.xml -->

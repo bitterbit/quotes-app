@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:id="@+id/ad_card_main"
+    android:background="@color/holo_blue"
+    >
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adUnitId="ca-app-pub-5093250322451066/6637524237"
+        ads:adSize="BANNER"
+        />
+
+</LinearLayout><!-- From: file:/C:/Users/Gal/AndroidStudioProjects/Quotes/QuoteApp/src/main/res/layout/ad_card_layout.xml -->
