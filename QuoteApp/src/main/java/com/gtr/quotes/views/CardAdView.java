@@ -6,7 +6,7 @@ import android.view.View;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.gtr.cardsuilib.objects.Card;
+import com.fima.cardsui.objects.Card;
 
 public class CardAdView extends Card {
 

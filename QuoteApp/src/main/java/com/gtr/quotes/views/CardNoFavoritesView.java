@@ -3,7 +3,7 @@ package com.gtr.quotes.views;
 import android.view.View;
 import android.widget.TextView;
 
-import com.gtr.cardsuilib.objects.RecyclableCard;
+import com.fima.cardsui.objects.RecyclableCard;
 import com.gtr.quotes.R;
 
 public class CardNoFavoritesView extends RecyclableCard {

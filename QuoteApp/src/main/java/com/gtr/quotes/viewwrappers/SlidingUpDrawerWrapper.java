@@ -12,8 +12,8 @@ import com.gtr.quotes.R;
 import com.gtr.quotes.pager.DynamicViewPager;
 import com.gtr.quotes.tracking.AnalyticsHandler;
 import com.gtr.quotes.tracking.FavoritesDrawerOpenEvent;
-import com.gtr.slidinguppanel.SlidingUpPanelLayout;
-import com.gtr.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 
 public class SlidingUpDrawerWrapper {
 

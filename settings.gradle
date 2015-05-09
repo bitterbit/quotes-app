@@ -1,1 +1,1 @@
-include ':QuoteApp', ':SlidingUpPanel', ':JazzyPageViewer', ':CarsUILib', ':UndoBar'
+include ':SlidingUpPanel', ':JazzyPageViewer', ':UndoBar', ':CardsUILib', ':QuoteApp'

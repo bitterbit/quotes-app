@@ -11,7 +11,7 @@ import com.gtr.quotes.quote.QuoteManager;
 import com.gtr.quotes.views.QuoteAdView;
 import com.gtr.quotes.views.QuotePlaceholderView;
 import com.gtr.quotes.views.QuoteViewFactory;
-import com.gtr.jazzyviewpager.JazzyViewPager;
+import com.jfeinstein.jazzyviewpager.JazzyViewPager;
 
 import java.util.Random;
 

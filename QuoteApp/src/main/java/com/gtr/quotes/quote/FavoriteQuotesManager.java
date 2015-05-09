@@ -10,14 +10,14 @@ import android.view.View;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.gtr.cardsuilib.objects.Card;
-import com.gtr.cardsuilib.objects.Card.OnCardSwiped;
+import com.fima.cardsui.objects.Card;
+import com.fima.cardsui.objects.Card.OnCardSwiped;
 import com.gtr.quotes.util.Consts;
 import com.gtr.quotes.views.CardFavoriteQuoteView;
 import com.gtr.quotes.views.CardFavoriteQuoteView.DeleteListener;
 import com.gtr.quotes.viewwrappers.CardsUIWrapper;
-import com.gtr.undobar.UndoBar;
-import com.gtr.undobar.UndoBar.Listener;
+import com.jensdriller.libs.undobar.UndoBar;
+import com.jensdriller.libs.undobar.UndoBar.Listener;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
