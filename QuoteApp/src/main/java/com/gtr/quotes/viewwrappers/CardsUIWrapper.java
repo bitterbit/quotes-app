@@ -5,10 +5,10 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 
-import com.gtr.cardsuilib.objects.AbstractCard;
-import com.gtr.cardsuilib.objects.Card;
-import com.gtr.cardsuilib.objects.CardStack;
-import com.gtr.cardsuilib.views.CardUI;
+import com.fima.cardsui.objects.AbstractCard;
+import com.fima.cardsui.objects.Card;
+import com.fima.cardsui.objects.CardStack;
+import com.fima.cardsui.views.CardUI;
 import com.gtr.quotes.quote.Quote;
 import com.gtr.quotes.views.CardFavoriteQuoteView;
 import com.gtr.quotes.views.CardNoFavoritesView;

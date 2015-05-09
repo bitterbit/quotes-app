@@ -1,8 +1,8 @@
 apply plugin: 'android'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '19.0.3'
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
         minSdkVersion 11
@@ -12,21 +12,21 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
 }
 
 dependencies {
-    compile 'com.google.code.gson:gson:1.7.2'
-    compile 'com.android.support:appcompat-v7:+'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':CarsUILib')
+    compile project(':CardsUILib')
     compile project(':JazzyPageViewer')
     compile project(':UndoBar')
     compile project(':SlidingUpPanel')
+    compile 'com.google.code.gson:gson:1.7.2'
+    compile 'com.android.support:appcompat-v7:+'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.squareup.picasso:picasso:2.2.0'
     compile 'com.google.android.gms:play-services:+'
-    compile "com.mixpanel.android:mixpanel-android:4.2.1@aar"
+    compile 'com.mixpanel.android:mixpanel-android:4.2.1@aar'
 }

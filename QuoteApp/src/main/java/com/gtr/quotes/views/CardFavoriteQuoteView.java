@@ -11,7 +11,7 @@ import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 
-import com.gtr.cardsuilib.objects.RecyclableCard;
+import com.fima.cardsui.objects.RecyclableCard;
 import com.gtr.quotes.R;
 import com.gtr.quotes.quote.Quote;
 import com.gtr.quotes.util.ShareUtil;
