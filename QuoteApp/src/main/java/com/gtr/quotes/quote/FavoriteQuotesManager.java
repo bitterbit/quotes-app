@@ -19,12 +19,6 @@ import com.gtr.quotes.viewwrappers.CardsUIWrapper;
 import com.jensdriller.libs.undobar.UndoBar;
 import com.jensdriller.libs.undobar.UndoBar.Listener;
 
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +72,7 @@ public class FavoriteQuotesManager {
         // Send favorites to server only if was never liked before
         if (allTimesFavIds.contains(quote.getId()) == false) {
             allTimesFavIds += "," + quote.getId();
-            new LikeQuote().execute(quote.getId());
+            //TODO: new LikeQuote().execute(quote.getId());
         }
 
         // Add the quote to the favorites view if not there already (and the quote is valid)
@@ -181,26 +175,5 @@ public class FavoriteQuotesManager {
         public void onUndo(Parcelable token) {
             addFavoriteQuoteCard(quote);
         }
-    }
-
-    private class LikeQuote extends AsyncTask<String, Void, Void> {
-
-        @Override
-        protected Void doInBackground(String... params) {
-            HttpClient httpclient = new DefaultHttpClient();
-            try {
-                if (params.length >= 1) {
-                    String url = API_URL + "?page=AddLike&id=" + params[0];
-                    httpclient.execute(new HttpGet(url));
-                }
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
     }
 }

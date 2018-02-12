@@ -5,13 +5,6 @@ import android.os.AsyncTask;
 import com.google.gson.Gson;
 import com.gtr.quotes.util.Consts;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.StatusLine;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -58,40 +51,7 @@ public class AsyncQuote extends Quote {
         @Override
         protected Void doInBackground(String... params) {
 
-            try {
-                double risk = 0.99;
-                HttpClient httpclient = new DefaultHttpClient();
-                String url = params[0] + "?page=SmartQuote&risk=" + risk;
-                HttpResponse response = httpclient.execute(new HttpGet(url)); //TODO: calculate the risk taken
-
-                StatusLine statusLine = response.getStatusLine();
-
-                if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-                    ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    out.close();
-                    response.getEntity().writeTo(out);
-                    String responseString = out.toString();
-
-                    Gson gson = new Gson();
-                    Quote quote = gson.fromJson(responseString, Quote.class);
-                    quote.setRiskTaken(risk);
-
-                    setArtistIconUrl(quote.getArtistIconUrl());
-                    setAuthor(quote.getAuthor());
-                    setText(quote.getText());
-                    setId(quote.getId());
-
-                    if (id.equals(EMPTY_MD5))
-                        status = Quote.Status.ERROR;
-                    else
-                        status = Quote.Status.DONE_SUCCESSFUL;
-                    return null;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            // If we got here something bad happened
-            status = Quote.Status.ERROR;
+            // TODO: get quote from server
             return null;
         }
 
