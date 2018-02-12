@@ -30,7 +30,7 @@ public class AsyncQuote extends Quote {
      * @author Gal
      */
     public interface Listener {
-        public void onStatusChange(Status status);
+        void onStatusChange(Status status);
     }
 
     private Listener listener = null;

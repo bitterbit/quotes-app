@@ -19,7 +19,7 @@ import com.gtr.quotes.util.ShareUtil;
 public class CardFavoriteQuoteView extends RecyclableCard implements OnClickListener {
 
     public interface DeleteListener {
-        public void onDeleteRequest(CardFavoriteQuoteView quoteCard);
+        void onDeleteRequest(CardFavoriteQuoteView quoteCard);
     }
 
     private Quote quote;

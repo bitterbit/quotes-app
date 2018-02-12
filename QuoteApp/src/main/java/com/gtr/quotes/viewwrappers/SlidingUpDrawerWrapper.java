@@ -18,7 +18,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout.PanelSlideListener;
 public class SlidingUpDrawerWrapper {
 
     public interface Listener {
-        public void onPanelCollapsed();
+        void onPanelCollapsed();
     }
 
     private Activity activity;

@@ -10,7 +10,7 @@ import com.gtr.quotes.views.IQuoteView;
 public class QuotePager extends DynamicViewPager {
 
     public interface Listener {
-        public void onPageChange(Quote quote);
+        void onPageChange(Quote quote);
     }
 
     private Listener listener = null;

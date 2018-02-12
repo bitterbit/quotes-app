@@ -19,7 +19,7 @@ public final class UndoBar {
 	/**
 	 * Listener for actions of the undo bar.
 	 */
-	public static interface Listener {
+	public interface Listener {
 		/**
 		 * Will be fired when the undo bar disappears without being actioned.
 		 */

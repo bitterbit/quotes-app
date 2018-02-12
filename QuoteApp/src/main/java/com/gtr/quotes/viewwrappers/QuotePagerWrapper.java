@@ -13,14 +13,6 @@ import com.gtr.quotes.tracking.AdViewEvent;
 import com.gtr.quotes.tracking.AnalyticsHandler;
 import com.gtr.quotes.tracking.IEvent;
 import com.gtr.quotes.tracking.QuoteViewEvent;
-import com.gtr.quotes.util.Consts;
-
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.IOException;
 
 public class QuotePagerWrapper {
 
@@ -99,7 +91,8 @@ public class QuotePagerWrapper {
             IEvent event = new QuoteViewEvent(quote, duration, quoteManager.isQuoteFavorite(quote));
             if (analyticsHandler != null)
                 analyticsHandler.sendEvent(event);
-            new ViewedQuote().execute(quote.getId());
+            // TODO: Send quote event
+            // new ViewedQuote().execute(quote.getId());
         }
 
         private void sendAdEvent(double duration) {
@@ -111,27 +104,6 @@ public class QuotePagerWrapper {
         private boolean isAdPage(Quote quote) {
             return quote.getId().equals("AD");
         }
-    }
-
-    private class ViewedQuote extends AsyncTask<String, Void, Void> {
-
-        @Override
-        protected Void doInBackground(String... params) {
-            HttpClient httpclient = new DefaultHttpClient();
-            try {
-                if (params.length >= 1) {
-                    String url = Consts.API_URL + "?page=AddView&id=" + params[0];
-                    httpclient.execute(new HttpGet(url));
-                }
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
     }
 
 

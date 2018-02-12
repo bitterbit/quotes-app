@@ -195,10 +195,8 @@ public class CardStack extends AbstractCard {
             return false;
         }
 
-        if (card.convert(convertCardView))
-            return true;
+        return card.convert(convertCardView);
 
-        return false;
     }
 
     public Card remove(int index) {

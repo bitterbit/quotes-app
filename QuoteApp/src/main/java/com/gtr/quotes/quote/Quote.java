@@ -8,7 +8,7 @@ import com.gtr.quotes.util.Consts;
 
 public class Quote implements Parcelable {
 
-    public static enum Status {
+    public enum Status {
         DONE_SUCCESSFUL,
         LOADING,
         ERROR
@@ -44,7 +44,6 @@ public class Quote implements Parcelable {
         this.author = parcel.readString();
         this.text = parcel.readString();
         this.artist_icon_url = Consts.UNKOWN_PERSON_URL;
-        ;
     }
 
     public String getText() {
@@ -82,9 +81,7 @@ public class Quote implements Parcelable {
     private static boolean isEmptyString(String s) {
         if (s == null)
             return true;
-        if (s.equals("null") || s.isEmpty())
-            return true;
-        return false;
+        return s.equals("null") || s.isEmpty();
     }
 
     /**

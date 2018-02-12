@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 public interface IEvent {
 
-    public String getName();
+    String getName();
 
-    public JSONObject toJsonObject();
+    JSONObject toJsonObject();
 }

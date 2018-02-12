@@ -10,8 +10,6 @@ public class QuoteViewFactory {
 
     private enum ScreenSize {PHONE_SMALL, PHONE_MED, PHONE_LARGE, TAB_SEVEN, TAB_TEN}
 
-    ;
-
     public static View getQuoteView(Context context, Quote quote) {
 
         ScreenSize screenSize = getScreenSize(context);
