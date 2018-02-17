@@ -13,7 +13,7 @@ public class QuotePlaceholderView extends View implements IQuoteView {
 
     @Override
     public Quote getQuote() {
-        return new Quote("", "", "EMPTY");
+        return Quote.createStaticQuote("", "", "EMPTY");
     }
 
     @Override

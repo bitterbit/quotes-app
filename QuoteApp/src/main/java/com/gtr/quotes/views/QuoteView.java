@@ -14,14 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.gtr.quotes.quote.AsyncQuote;
+
+import com.galtashma.lazyparse.LazyParseObjectHolder;
 import com.gtr.quotes.quote.Quote;
-import com.gtr.quotes.quote.Quote.Status;
+import com.gtr.quotes.util.Consts;
 import com.gtr.quotes.util.PixelUtils;
 
 public class QuoteView extends LinearLayout implements IQuoteView {
 
-    private Quote quote;
+    private LazyParseObjectHolder<Quote> quote;
     private WebView webView;
 
     private LinearLayout header = null;
@@ -29,6 +30,7 @@ public class QuoteView extends LinearLayout implements IQuoteView {
     private RoundImageView authorImage = null;
 
     private boolean error = false;
+    private boolean didInit = false;
 
     private QuoteViewVars vars;
 
@@ -44,16 +46,17 @@ public class QuoteView extends LinearLayout implements IQuoteView {
      * Initialize the view no matter what,
      * load the quote data to the view only when its ready
      */
-    public QuoteView(Context context, Quote quote) {
+    public QuoteView(Context context, LazyParseObjectHolder<Quote> quote) {
         super(context);
         this.quote = quote;
         this.vars = getVars();
         initialize();
 
-        if (quote instanceof AsyncQuote)
-            loadAsyncQuote((AsyncQuote) quote);
-        else
-            loadBody();
+         if (quote.getState() == LazyParseObjectHolder.State.READY){
+             loadBody();
+         } else {
+             handleLoadingQuote(quote);
+         }
     }
 
     public QuoteViewVars getVars() {
@@ -62,44 +65,32 @@ public class QuoteView extends LinearLayout implements IQuoteView {
 
     @Override
     public Quote getQuote() {
-        return quote;
+        return quote.get();
     }
 
     @Override
     public boolean isLoading() {
-        return quote.getStatus() == Status.LOADING;
+        return quote.getState() != LazyParseObjectHolder.State.READY;
     }
 
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        refreshHeader();
+        if (quote.getState() == LazyParseObjectHolder.State.READY){
+            reloadHeader();
+        }
     }
 
-    private void loadAsyncQuote(AsyncQuote quote) {
+    private void handleLoadingQuote(LazyParseObjectHolder<Quote> quote) {
+        quote.setListener(new LazyParseObjectHolder.OnReadyListener<Quote>() {
+            @Override
+            public void onReady(Quote quote) {
+                refreshView();
+                hideLoadingSpinner();
+            }
+        });
 
-        if (quote.getStatus() == Status.DONE_SUCCESSFUL) {
-            refreshView();
-        } else if (quote.getStatus() == Status.LOADING) {
-            quote.setListener(new AsyncQuote.Listener() {
-
-                @Override
-                public void onStatusChange(Status status) {
-
-                    if (status == Status.DONE_SUCCESSFUL)
-                        refreshView();
-                    else if (status == Status.LOADING)
-                        showNoInternetMessage();
-                    else
-                        showNoInternetMessage();
-
-                    hideLoadingSpinner();
-                }
-            });
-            showLoadingSpinner();
-        } else {
-            showNoInternetMessage();
-        }
+        showLoadingSpinner();
     }
 
     private void initialize() {
@@ -113,27 +104,28 @@ public class QuoteView extends LinearLayout implements IQuoteView {
         initWebView();
 
         // If is not ready initialize the loading spinner
-        if (quote.getStatus() == Status.LOADING)
+        if (isLoading()){
             initLoadingSpinner();
+        } else {
+            reloadHeader();
+        }
     }
 
     private void initHeader() {
         header = new LinearLayout(getContext());
         header.setGravity(Gravity.CENTER);
-
-        refreshHeader();
         this.addView(header, 0);
     }
 
     private void refreshView() {
-        refreshHeader();
+        reloadHeader();
         loadBody();
     }
 
-    private void refreshHeader() {
+    private void reloadHeader() {
         header.removeAllViews();
-        View authorImage = initAuthorImage(isPortrait());
-        View title = initTitle(isPortrait());
+        View authorImage = loadAuthorImage(isPortrait());
+        View title = loadTitle(isPortrait());
 
         if (isPortrait()) {
             header.setOrientation(LinearLayout.VERTICAL);
@@ -151,9 +143,10 @@ public class QuoteView extends LinearLayout implements IQuoteView {
         header.addView(title);
     }
 
-    private View initTitle(boolean portrait) {
+    private View loadTitle(boolean portrait) {
+        Quote q = quote.get();
         TextView title = new AutoFitTextView(getContext());
-        title.setText(quote.getAuthor());
+        title.setText(q.getAuthor());
         LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, PixelUtils.pxFromDp(getContext(), 100));
 
         if (portrait) {
@@ -174,11 +167,14 @@ public class QuoteView extends LinearLayout implements IQuoteView {
         return title;
     }
 
-    private View initAuthorImage(boolean portrait) {
-        return initAuthorImage(quote.getArtistIconUrl(), portrait);
+    private View loadAuthorImage(boolean portrait) {
+        if (isLoading()){
+            return loadAuthorImage(Consts.UNKNOWN_PERSON_URL, portrait);
+        }
+        return loadAuthorImage(quote.get().getArtistIconUrl(), portrait);
     }
 
-    private View initAuthorImage(String url, boolean portrait) {
+    private View loadAuthorImage(String url, boolean portrait) {
         int imageSize = PixelUtils.pxFromDp(getContext(), vars.pic_size);
         authorImage = new RoundImageView(getContext(), url);
 
@@ -193,7 +189,6 @@ public class QuoteView extends LinearLayout implements IQuoteView {
         }
 
         authorImage.setLayoutParams(params);
-
         return authorImage;
     }
 
@@ -211,9 +206,10 @@ public class QuoteView extends LinearLayout implements IQuoteView {
     }
 
     private void loadBody() {
+        Quote q = quote.get();
         String text = "<html><head>" + getCss() + "</head>"
                 + "<body>"
-                + "<div id='main'><blockquote class=\"bq\"><p class=\"quote\">" + quote.getText() + "</p></blockquote></div>"
+                + "<div id='main'><blockquote class=\"bq\"><p class=\"quote\">" + q.getText() + "</p></blockquote></div>"
                 + "</body></html>";
 
         webView.loadDataWithBaseURL("file:///android_asset/", text, "text/html", "utf-8", null);
@@ -256,8 +252,11 @@ public class QuoteView extends LinearLayout implements IQuoteView {
     private void showLoadingSpinner() {
         if (loadingSpinner != null) {
             webView.setVisibility(View.GONE);
-            authorImage.setVisibility(View.GONE);
             loadingSpinner.setVisibility(View.VISIBLE);
+
+            if (authorImage != null){
+                authorImage.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -265,10 +264,11 @@ public class QuoteView extends LinearLayout implements IQuoteView {
         if (loadingSpinner != null) {
             loadingSpinner.setVisibility(View.GONE);
             webView.setVisibility(View.VISIBLE);
-            if (error == false) {
+            if (!error && authorImage != null) {
                 authorImage.setVisibility(View.VISIBLE);
-                Log.d("Quotes", "Quote: " + quote.getId() + "image VISI");
             }
+
+            Log.d("Quotes", "Hiding loading spinner. current quote: " + quote);
         }
     }
 

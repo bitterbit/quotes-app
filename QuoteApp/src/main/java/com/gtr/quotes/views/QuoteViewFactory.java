@@ -4,13 +4,14 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.view.View;
 
+import com.galtashma.lazyparse.LazyParseObjectHolder;
 import com.gtr.quotes.quote.Quote;
 
 public class QuoteViewFactory {
 
     private enum ScreenSize {PHONE_SMALL, PHONE_MED, PHONE_LARGE, TAB_SEVEN, TAB_TEN}
 
-    public static View getQuoteView(Context context, Quote quote) {
+    public static View getQuoteView(Context context, LazyParseObjectHolder<Quote> quote) {
 
         ScreenSize screenSize = getScreenSize(context);
 

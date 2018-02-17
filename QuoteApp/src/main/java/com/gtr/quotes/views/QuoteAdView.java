@@ -31,7 +31,8 @@ public class QuoteAdView extends LinearLayout implements IQuoteView {
     @Override
     public Quote getQuote() {
         //return an empty quote, this way this quote cant be liked
-        return new Quote("", "", "AD");
+        return Quote.createStaticQuote("", "", "AD");
+        // return new Quote("", "", "AD");
     }
 
     @Override

@@ -76,7 +76,7 @@ public class FavoriteQuotesManager {
         }
 
         // Add the quote to the favorites view if not there already (and the quote is valid)
-        if (!isQuoteFavorite(quote) && quote.getStatus() == Quote.Status.DONE_SUCCESSFUL) {
+        if (!isQuoteFavorite(quote)) {
             addFavoriteQuoteCard(quote);
             favorites.add(quote);
             saveFavoritesToStorage();
@@ -111,7 +111,7 @@ public class FavoriteQuotesManager {
         Gson gson = new Gson();
         editor.putString(FAV_LIST_KEY, gson.toJson(favorites));
         editor.putString(ALL_TIMES_FAV_QUOTES_KEY, allTimesFavIds);
-        editor.commit();
+        editor.apply();
     }
 
     private void addFavoriteQuoteCard(Quote quote) {

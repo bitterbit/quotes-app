@@ -38,9 +38,9 @@ public class QuoteViewEvent implements IEvent {
         try {
             obj.put("Quote ID", quote.getId());
             obj.put("Duration", (int) duration / 1000);
-            obj.put("Quote Status", getStatusString(quote.getStatus()));
+            //obj.put("Quote Status", getStatusString(quote.getStatus()));
             obj.put("Is Favorite", isFavorite);
-            obj.put("Quote Risk", quote.getRiskTaken());
+            //obj.put("Quote Risk", quote.getRiskTaken());
         } catch (JSONException e) {
         }
 
