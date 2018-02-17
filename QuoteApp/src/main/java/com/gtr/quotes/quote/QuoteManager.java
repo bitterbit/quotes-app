@@ -23,7 +23,6 @@ public class QuoteManager {
     // private static final String CACHE_LIST_KEY = "cache_list_key";
     private SharedPreferences sharedPreferences;
 
-    private LazyList<Quote> quotes;
     private Iterator<LazyParseObjectHolder<Quote>> quoteIterator;
 
     private FavoriteQuotesManager favManager;
@@ -41,7 +40,7 @@ public class QuoteManager {
 
         this.analyticsHandler = analyticsHandler;
         this.sharedPreferences = activity.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
-        this.quotes = new LazyList<>(query);
+        LazyList<Quote> quotes = new LazyList<>(query);
         this.quoteIterator = quotes.iterator();
 
         CardsUIWrapper cardUI = (CardsUIWrapper) activity.findViewById(R.id.cardsview);

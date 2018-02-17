@@ -3,6 +3,7 @@ package com.gtr.quotes.viewwrappers;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.SystemClock;
+import android.util.Log;
 
 import com.gtr.quotes.R;
 import com.gtr.quotes.pager.QuotePageAdapter;
@@ -79,6 +80,12 @@ public class QuotePagerWrapper {
         public void updatePageChange() {
             double duration = SystemClock.uptimeMillis() - lastTick;
             Quote quote = getCurrentQuote();
+
+            if (quote == null){
+                Log.w("Quotes", "on page change quote was null");
+                return;
+            }
+
             if (isAdPage(quote))
                 sendAdEvent(duration);
             else
@@ -102,7 +109,7 @@ public class QuotePagerWrapper {
         }
 
         private boolean isAdPage(Quote quote) {
-            return quote.getId().equals("AD");
+            return quote != null && quote.getId().equals("AD");
         }
     }
 

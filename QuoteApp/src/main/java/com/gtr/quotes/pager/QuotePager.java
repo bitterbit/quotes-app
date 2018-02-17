@@ -101,7 +101,7 @@ public class QuotePager extends DynamicViewPager {
                 listener.onPageChange(currentQuote);
             }
 
-            Log.d("Quotes", "position: " + position + " last: " + lastPosition + "  Current quote: " + currentQuote.getAuthor());
+            Log.d("Quotes", "position: " + position + " last: " + lastPosition + "  Current quote: " + currentQuote);
         }
 
         private void lockLogic(int position) {
