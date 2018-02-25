@@ -107,9 +107,15 @@ public class FavoriteQuotesManager {
 
     private void saveFavoritesToStorage() {
         Editor editor = sharedPref.edit();
+
+        List<Quote.QuoteStruct> favs = new ArrayList<>();
+        for (Quote f : favorites){
+             favs.add(f.getData());
+        }
+
         // Save favorites locally
         Gson gson = new Gson();
-        editor.putString(FAV_LIST_KEY, gson.toJson(favorites));
+        editor.putString(FAV_LIST_KEY, gson.toJson(favs));
         editor.putString(ALL_TIMES_FAV_QUOTES_KEY, allTimesFavIds);
         editor.apply();
     }
@@ -137,9 +143,17 @@ public class FavoriteQuotesManager {
         String favJson = sharedPref.getString(FAV_LIST_KEY, "");
         if (!favJson.equals("")) {
             Gson gson = new Gson();
-            return gson.fromJson(favJson, new TypeToken<ArrayList<Quote>>() {
+            List<Quote.QuoteStruct> savedQuotes = gson.fromJson(favJson, new TypeToken<ArrayList<Quote.QuoteStruct>>() {
             }.getType());
+
+            ArrayList<Quote> quotes = new ArrayList<>();
+            for(Quote.QuoteStruct q : savedQuotes){
+                quotes.add(Quote.createStaticQuote(q));
+            }
+
+            return quotes;
         }
+
         return new ArrayList<Quote>();
     }
 

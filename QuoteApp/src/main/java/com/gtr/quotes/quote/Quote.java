@@ -1,12 +1,10 @@
 package com.gtr.quotes.quote;
 
-import android.os.Parcel;
-import android.util.Log;
-
 import com.galtashma.lazyparse.LazyParseObject;
 import com.gtr.quotes.util.Consts;
 import com.parse.ParseClassName;
-import com.parse.ParseObject;
+
+import java.util.ArrayList;
 
 @ParseClassName("Quote")
 public class Quote extends LazyParseObject {
@@ -81,6 +79,27 @@ public class Quote extends LazyParseObject {
             return true;
         }
         return s.equals("null") || s.isEmpty();
+    }
+
+    public static Quote createStaticQuote(QuoteStruct qs){
+        Quote quote = createStaticQuote(qs.text, qs.author, qs.artistIconUrl);
+        quote.setObjectId(qs.id);
+        return quote;
+    }
+
+    public QuoteStruct getData(){
+        return new QuoteStruct(getId(), getText(), getAuthor(), getArtistIconUrl());
+    }
+
+    class QuoteStruct {
+        String id, text, author, artistIconUrl;
+
+        QuoteStruct(String id, String text, String author, String artistIconUrl) {
+            this.id = id;
+            this.text = text;
+            this.author = author;
+            this.artistIconUrl = artistIconUrl;
+        }
     }
 
 
