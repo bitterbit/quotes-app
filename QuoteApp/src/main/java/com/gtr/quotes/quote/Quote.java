@@ -8,7 +8,7 @@ import com.gtr.quotes.util.Consts;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
-@ParseClassName("Quotes")
+@ParseClassName("Quote")
 public class Quote extends LazyParseObject {
 
     public enum Status {
@@ -36,7 +36,11 @@ public class Quote extends LazyParseObject {
     }
 
     public String getId() {
-        return getObjectId();
+        String id = getObjectId();
+        if (id == null){
+            return "";
+        }
+        return id;
     }
 
     public String getWikipediaLink() {

@@ -1,10 +1,9 @@
 package com.gtr.quotes;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.gtr.quotes.quote.Quote;
 import com.parse.Parse;
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 
 import okhttp3.OkHttpClient;
@@ -14,7 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
  * Created by gal on 2/12/18.
  */
 
-public class MainApplication extends Application {
+public class MainApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {
