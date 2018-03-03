@@ -60,6 +60,11 @@ public class FavoriteQuotesManager {
 
     public boolean isQuoteFavorite(Quote quote) {
 
+        // Ignore ads
+        if (quote.getArtistIconUrl().equals("AD")){
+            return false;
+        }
+
         for (Quote qf : favorites)
             if (qf.equals(quote))
                 return true;
@@ -68,6 +73,10 @@ public class FavoriteQuotesManager {
     }
 
     public void addToFavorites(Quote quote) {
+
+        if (quote.getArtistIconUrl().equals("AD")){
+            return;
+        }
 
         // Send favorites to server only if was never liked before
         if (allTimesFavIds.contains(quote.getId()) == false) {
