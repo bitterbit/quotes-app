@@ -13,18 +13,3 @@ public class SettingsActivity extends PreferenceActivity {
     }
 }
 
-/**
- * This fragment shows the preferences for the first header.
- */
-class PrefFragment extends PreferenceFragment {
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        //PreferenceManager.setDefaultValues(getActivity(), R.layout., false);
-
-        // Load the preferences from an XML resource
-
-        addPreferencesFromResource(R.xml.settings_layout);
-    }
-}

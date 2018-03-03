@@ -88,7 +88,7 @@ public class CardStack extends AbstractCard {
 
         if (!TextUtils.isEmpty(this.title)) {
             if (stackTitleColor == null)
-                stackTitleColor = context.getResources().getString(R.color.card_title_text);
+                stackTitleColor = context.getResources().getString(R.string.card_title_text_color_string);
 
             title.setTextColor(Color.parseColor(stackTitleColor));
             title.setText(this.title);
