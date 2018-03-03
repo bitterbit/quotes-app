@@ -8,12 +8,16 @@ import org.json.JSONObject;
 /**
  * Created by Gal on 6/8/2014.
  */
-public class LikeEvent implements IEvent {
+public class QuoteLikeEvent implements IEvent {
 
     private Quote quote;
 
-    public LikeEvent(Quote quote) {
+    public QuoteLikeEvent(Quote quote) {
         this.quote = quote;
+    }
+
+    public String getQuoteId(){
+        return quote.getId();
     }
 
     @Override

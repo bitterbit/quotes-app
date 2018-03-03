@@ -1,17 +1,12 @@
 package com.gtr.quotes.quote;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 
 import com.galtashma.lazyparse.LazyList;
 import com.galtashma.lazyparse.LazyParseObjectHolder;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.gtr.quotes.R;
 import com.gtr.quotes.tracking.AnalyticsHandler;
-import com.gtr.quotes.tracking.LikeEvent;
+import com.gtr.quotes.tracking.QuoteLikeEvent;
 import com.gtr.quotes.viewwrappers.CardsUIWrapper;
 import com.parse.ParseQuery;
 
@@ -61,7 +56,7 @@ public class QuoteManager {
             favManager.removeFromFavorites(quote);
         } else {
             favManager.addToFavorites(quote);
-            analyticsHandler.sendEvent(new LikeEvent(quote));
+            analyticsHandler.sendEvent(new QuoteLikeEvent(quote));
         }
     }
 

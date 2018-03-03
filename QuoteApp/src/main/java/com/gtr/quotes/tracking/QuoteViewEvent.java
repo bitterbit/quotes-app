@@ -26,6 +26,10 @@ public class QuoteViewEvent implements IEvent {
         this.isFavorite = false;
     }
 
+    public String getQuoteId(){
+        return quote.getId();
+    }
+
     @Override
     public String getName() {
         return "Viewed Quote";
