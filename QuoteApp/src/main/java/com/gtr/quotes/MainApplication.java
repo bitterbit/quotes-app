@@ -2,6 +2,7 @@ package com.gtr.quotes;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.appsee.Appsee;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.answers.Answers;
 import com.gtr.quotes.quote.Quote;
@@ -46,5 +47,7 @@ public class MainApplication extends MultiDexApplication {
 
         Fabric.with(this, new Crashlytics());
         Fabric.with(this, new Answers());
+
+        Appsee.start(getString(R.string.appsee_api_key));
     }
 }
