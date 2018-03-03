@@ -19,27 +19,15 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class QuoteManager {
-    private static final String PREF_KEY = "pref_key";
-    // private static final String CACHE_LIST_KEY = "cache_list_key";
-    private SharedPreferences sharedPreferences;
-
     private Iterator<LazyParseObjectHolder<Quote>> quoteIterator;
-
     private FavoriteQuotesManager favManager;
     private AnalyticsHandler analyticsHandler;
 
-    // TODO: add: set cache size to lazy parse lib
-    private static final int CACHE_SIZE = 50;
-
-    // TODO: control step size in lazy parse lib
-    private static final int WAITING_QUEUE_MIN_SIZE = 5;
-
     public QuoteManager(Activity activity, AnalyticsHandler analyticsHandler) {
         ParseQuery<Quote> query = new ParseQuery<Quote>(Quote.class);
-        query.orderByAscending("random");
+        query.orderByDescending("random");
 
         this.analyticsHandler = analyticsHandler;
-        this.sharedPreferences = activity.getSharedPreferences(PREF_KEY, Context.MODE_PRIVATE);
         LazyList<Quote> quotes = new LazyList<>(query);
         this.quoteIterator = quotes.iterator();
 
@@ -56,21 +44,8 @@ public class QuoteManager {
         return quoteIterator.next();
     }
 
-
     public void refreshFavView() {
         favManager.refreshView();
-    }
-
-    /**
-     * Save favorites localy
-     */
-    public void saveWaitingQuotes() {
-        // TODO implement in LazyParse library
-    }
-
-    private LinkedList<Quote> loadWaitingQuotes() {
-        // TODO implement in LazyParse library
-        return null;
     }
 
     private LinkedList<Quote> initWithStaticQuotes(){
