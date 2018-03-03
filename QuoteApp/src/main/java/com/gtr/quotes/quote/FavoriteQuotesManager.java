@@ -61,7 +61,7 @@ public class FavoriteQuotesManager {
     public boolean isQuoteFavorite(Quote quote) {
 
         // Ignore ads
-        if (quote.getArtistIconUrl().equals("AD")){
+        if (quote == null || quote.getArtistIconUrl().equals("AD")){
             return false;
         }
 
