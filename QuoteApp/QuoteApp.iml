@@ -32,6 +32,7 @@
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/apt/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/fabric/res/debug" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/debug" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/debug" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/androidTest/debug" isTestSource="true" generated="true" />
@@ -104,8 +105,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="com.android.support:multidex-1.0.2" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="com.android.support:multidex-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:multidex-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="com.google.android.gms:play-services-base-9.8.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="com.android.support:multidex-instrumentation-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-annotations:26.0.1@jar" level="project" />
@@ -126,14 +126,19 @@
     <orderEntry type="library" exported="" name="com.parse.bolts:bolts-android:1.4.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.squareup.okhttp3:logging-interceptor:3.8.1@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:mediarouter-v7-25.4.0" level="project" />
+    <orderEntry type="library" exported="" name="com.crashlytics.sdk.android:crashlytics-core-2.6.1" level="project" />
     <orderEntry type="library" exported="" name="com.squareup.picasso:picasso:2.2.0@jar" level="project" />
+    <orderEntry type="library" exported="" name="io.fabric.sdk.android:fabric-1.4.2" level="project" />
     <orderEntry type="library" exported="" name="com.google.android.gms:play-services-tasks-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:appcompat-v7-25.4.0" level="project" />
     <orderEntry type="library" exported="" name="com.google.android.gms:play-services-ads-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="com.github.bitterbit:LazyParse-1ff5ff65a0" level="project" />
+    <orderEntry type="library" exported="" name="com.crashlytics.sdk.android:beta-1.2.7" level="project" />
     <orderEntry type="library" exported="" name="com.google.android.gms:play-services-clearcut-9.8.0" level="project" />
     <orderEntry type="library" exported="" name="com.google.code.gson:gson:1.7.2@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.crashlytics.sdk.android:crashlytics-2.9.1" level="project" />
     <orderEntry type="library" exported="" name="com.mixpanel.android:mixpanel-android-4.2.1" level="project" />
+    <orderEntry type="library" exported="" name="com.crashlytics.sdk.android:answers-1.4.1" level="project" />
     <orderEntry type="library" exported="" name="org.greenrobot:eventbus:3.1.1@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:palette-v7-25.4.0" level="project" />
     <orderEntry type="library" exported="" name="com.google.android.gms:play-services-ads-lite-9.8.0" level="project" />

@@ -2,10 +2,13 @@ package com.gtr.quotes;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
 import com.gtr.quotes.quote.Quote;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
+import io.fabric.sdk.android.Fabric;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -40,5 +43,8 @@ public class MainApplication extends MultiDexApplication {
                 .applicationId(getResources().getString(R.string.parse_app_id))
                 .clientKey(getResources().getString(R.string.parse_client_key))
                 .server(getResources().getString(R.string.parse_server_address)).build());
+
+        Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Answers());
     }
 }

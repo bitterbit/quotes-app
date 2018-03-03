@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 25
@@ -23,7 +24,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:multidex:1.0.2'
+    compile 'com.android.support:multidex:1.0.1'
     compile project(':CardsUILib')
     compile project(':JazzyPageViewer')
     compile project(':UndoBar')
@@ -46,5 +47,12 @@ dependencies {
 
     compile ('com.github.bitterbit:LazyParse:1ff5ff65a0') {
         exclude group: 'com.android.support'
+    }
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
+        transitive = true;
+    }
+    compile('com.crashlytics.sdk.android:answers:1.4.1@aar') {
+        transitive = true;
     }
 }
