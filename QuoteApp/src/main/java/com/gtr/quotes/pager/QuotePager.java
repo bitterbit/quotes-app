@@ -10,12 +10,11 @@ import com.gtr.quotes.views.IQuoteView;
 public class QuotePager extends DynamicViewPager {
 
     public interface Listener {
-        public void onPageChange(Quote quote);
+        void onPageChange(Quote quote);
     }
 
     private Listener listener = null;
     private Quote currentQuote;
-    private boolean lockPagerForward = false;
     private boolean loadedFirstQuote = false;
 
     public QuotePager(Context context) {
@@ -67,8 +66,6 @@ public class QuotePager extends DynamicViewPager {
 
         @Override
         public void onPageScrolled(int page, float inPagePos, int pagePixel) {
-            IQuoteView quoteView = (IQuoteView) getChildAt(getOffscreenPageLimit());
-            lockPagerForward = quoteView.isLoading();
         }
 
         @Override
@@ -101,7 +98,7 @@ public class QuotePager extends DynamicViewPager {
                 listener.onPageChange(currentQuote);
             }
 
-            Log.d("Quotes", "position: " + position + " last: " + lastPosition + "  Current quote: " + currentQuote.getAuthor());
+            Log.d("Quotes", "position: " + position + " last: " + lastPosition + "  Current quote: " + currentQuote);
         }
 
         private void lockLogic(int position) {
@@ -110,8 +107,12 @@ public class QuotePager extends DynamicViewPager {
 
             // Going forward, delete previous quotes
             if (position >= lastPosition) {
-                if (lockPagerForward) {
+                if (getCurrentQuoteView().isLoading()) {
+                    Log.v("Quotes", "Don't allow scrolling to the next quote, current is still loading");
                     scrollToItem(lastPosition); // Go back to the origin
+
+                    // Don't update last position
+                    return;
                 } else if (prevQuote != null && position != lastPosition) {
                     prevQuote.setVisible(false);
                     Log.v("Quotes", "Making quote invisible");

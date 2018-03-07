@@ -2,11 +2,12 @@ package com.gtr.quotes.views;
 
 import android.content.Context;
 
+import com.galtashma.lazyparse.LazyParseObjectHolder;
 import com.gtr.quotes.quote.Quote;
 
 public class QuoteViewTablet extends QuoteView {
 
-    public QuoteViewTablet(Context context, Quote quote) {
+    public QuoteViewTablet(Context context, LazyParseObjectHolder<Quote> quote) {
         super(context, quote);
     }
 

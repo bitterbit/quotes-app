@@ -7,8 +7,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
-        android:icon="@drawable/icon3"
+        android:icon="@drawable/ic_quotes"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         tools:replace="icon, label">
@@ -28,6 +29,10 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
 
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="ef2dcdc24492870e0cd95b8eba2103403c8dd1ff" />
 
     </application>
 

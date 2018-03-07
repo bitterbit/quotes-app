@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Quotes</string>
+    <string name="card_title_text_color_string">#ff707070</string>
+
 </resources>

@@ -11,6 +11,7 @@ import com.gtr.quotes.quote.Quote;
 import com.gtr.quotes.quote.QuoteManager;
 import com.gtr.quotes.tracking.AnalyticsHandler;
 import com.gtr.quotes.tracking.MixpanelAgent;
+import com.gtr.quotes.tracking.ParseAgent;
 import com.gtr.quotes.tracking.WikiEvent;
 import com.gtr.quotes.util.ShareUtil;
 import com.gtr.quotes.views.ShowcaseView;
@@ -37,6 +38,7 @@ public class MainActivity extends Activity {
 
         analytics = new AnalyticsHandler();
         analytics.addAgent(new MixpanelAgent(this));
+        analytics.addAgent(new ParseAgent());
 
         quoteManager = new QuoteManager(this, analytics);
 
@@ -57,7 +59,7 @@ public class MainActivity extends Activity {
 
         ShareUtil.getInstance().setAnalyticsHandler(analytics);
 
-        // TODO: Put only on the first open
+        // TODO: Put only on the first open showHelpView();
         //showHelpView();
     }
 
@@ -81,7 +83,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        quoteManager.saveWaitingQuotes();
         analytics.updateUserValue("Number of favorites", quoteManager.getFavoriteQuotesCount());
         analytics.dispose();
     }

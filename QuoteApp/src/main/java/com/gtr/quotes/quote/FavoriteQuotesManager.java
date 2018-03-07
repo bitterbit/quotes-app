@@ -19,12 +19,6 @@ import com.gtr.quotes.viewwrappers.CardsUIWrapper;
 import com.jensdriller.libs.undobar.UndoBar;
 import com.jensdriller.libs.undobar.UndoBar.Listener;
 
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +60,11 @@ public class FavoriteQuotesManager {
 
     public boolean isQuoteFavorite(Quote quote) {
 
+        // Ignore ads
+        if (quote == null || quote.getArtistIconUrl().equals("AD")){
+            return false;
+        }
+
         for (Quote qf : favorites)
             if (qf.equals(quote))
                 return true;
@@ -75,14 +74,18 @@ public class FavoriteQuotesManager {
 
     public void addToFavorites(Quote quote) {
 
+        if (quote.getArtistIconUrl().equals("AD")){
+            return;
+        }
+
         // Send favorites to server only if was never liked before
         if (allTimesFavIds.contains(quote.getId()) == false) {
             allTimesFavIds += "," + quote.getId();
-            new LikeQuote().execute(quote.getId());
+            //TODO: new LikeQuote().execute(quote.getId());
         }
 
         // Add the quote to the favorites view if not there already (and the quote is valid)
-        if (!isQuoteFavorite(quote) && quote.getStatus() == Quote.Status.DONE_SUCCESSFUL) {
+        if (!isQuoteFavorite(quote)) {
             addFavoriteQuoteCard(quote);
             favorites.add(quote);
             saveFavoritesToStorage();
@@ -113,11 +116,17 @@ public class FavoriteQuotesManager {
 
     private void saveFavoritesToStorage() {
         Editor editor = sharedPref.edit();
+
+        List<Quote.QuoteStruct> favs = new ArrayList<>();
+        for (Quote f : favorites){
+             favs.add(f.getData());
+        }
+
         // Save favorites locally
         Gson gson = new Gson();
-        editor.putString(FAV_LIST_KEY, gson.toJson(favorites));
+        editor.putString(FAV_LIST_KEY, gson.toJson(favs));
         editor.putString(ALL_TIMES_FAV_QUOTES_KEY, allTimesFavIds);
-        editor.commit();
+        editor.apply();
     }
 
     private void addFavoriteQuoteCard(Quote quote) {
@@ -143,9 +152,17 @@ public class FavoriteQuotesManager {
         String favJson = sharedPref.getString(FAV_LIST_KEY, "");
         if (!favJson.equals("")) {
             Gson gson = new Gson();
-            return gson.fromJson(favJson, new TypeToken<ArrayList<Quote>>() {
+            List<Quote.QuoteStruct> savedQuotes = gson.fromJson(favJson, new TypeToken<ArrayList<Quote.QuoteStruct>>() {
             }.getType());
+
+            ArrayList<Quote> quotes = new ArrayList<>();
+            for(Quote.QuoteStruct q : savedQuotes){
+                quotes.add(Quote.createStaticQuote(q));
+            }
+
+            return quotes;
         }
+
         return new ArrayList<Quote>();
     }
 
@@ -181,26 +198,5 @@ public class FavoriteQuotesManager {
         public void onUndo(Parcelable token) {
             addFavoriteQuoteCard(quote);
         }
-    }
-
-    private class LikeQuote extends AsyncTask<String, Void, Void> {
-
-        @Override
-        protected Void doInBackground(String... params) {
-            HttpClient httpclient = new DefaultHttpClient();
-            try {
-                if (params.length >= 1) {
-                    String url = API_URL + "?page=AddLike&id=" + params[0];
-                    httpclient.execute(new HttpGet(url));
-                }
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
     }
 }

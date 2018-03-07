@@ -385,7 +385,7 @@ public class CardUI extends FrameLayout {
     }
 
     public interface OnRenderedListener {
-        public void onRendered();
+        void onRendered();
     }
 
 }

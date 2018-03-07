@@ -4,12 +4,12 @@ import com.gtr.quotes.quote.Quote;
 
 public interface IQuoteView {
 
-    public Quote getQuote();
+    Quote getQuote();
 
-    public boolean isLoading();
+    boolean isLoading();
 
-    public void setVisible(boolean visible);
+    void setVisible(boolean visible);
 
-    public boolean isVisible();
+    boolean isVisible();
 
 }

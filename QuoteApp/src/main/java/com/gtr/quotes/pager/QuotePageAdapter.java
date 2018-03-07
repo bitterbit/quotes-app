@@ -6,6 +6,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.galtashma.lazyparse.LazyParseObjectHolder;
 import com.gtr.quotes.quote.Quote;
 import com.gtr.quotes.quote.QuoteManager;
 import com.gtr.quotes.views.QuoteAdView;
@@ -37,7 +38,7 @@ public class QuotePageAdapter extends PagerAdapter {
         } else if (shouldShowAndAd()) {
             v = new QuoteAdView(context);
         } else {
-            Quote quote = quoteManager.getQuote();
+            LazyParseObjectHolder<Quote> quote = quoteManager.getQuote();
             v = QuoteViewFactory.getQuoteView(context, quote);
         }
         lastPosition = position;

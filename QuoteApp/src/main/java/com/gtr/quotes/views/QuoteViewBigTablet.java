@@ -2,6 +2,7 @@ package com.gtr.quotes.views;
 
 import android.content.Context;
 
+import com.galtashma.lazyparse.LazyParseObjectHolder;
 import com.gtr.quotes.quote.Quote;
 
 public class QuoteViewBigTablet extends QuoteView {
@@ -13,7 +14,7 @@ public class QuoteViewBigTablet extends QuoteView {
     private final static int HEADER_LANDSCAPE_WIDTH = 800;
 
 
-    public QuoteViewBigTablet(Context context, Quote quote) {
+    public QuoteViewBigTablet(Context context, LazyParseObjectHolder<Quote> quote) {
         super(context, quote);
 
     }

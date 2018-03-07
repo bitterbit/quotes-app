@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string translatable="false" name="parse_app_id">7KciVh752uRLJVDRKbZEgtaacrETPUrWQNPPzOYk</string>
+    <string translatable="false" name="parse_client_key">iEOcVeftrugO97dJBrkR5CheerEkVQWUPDPcYaXz</string>
+    <string translatable="false" name="parse_server_address">https://pg-app-k0r2ol83t3rmaw2vhtlj2lev8ytizc.scalabl.cloud/1/</string>
+    <string translatable="false" name="appsee_api_key">7221f367e0354cd6bf11e493add3be18</string>
+</resources>

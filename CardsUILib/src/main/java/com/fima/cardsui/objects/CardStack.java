@@ -88,7 +88,7 @@ public class CardStack extends AbstractCard {
 
         if (!TextUtils.isEmpty(this.title)) {
             if (stackTitleColor == null)
-                stackTitleColor = context.getResources().getString(R.color.card_title_text);
+                stackTitleColor = context.getResources().getString(R.string.card_title_text_color_string);
 
             title.setTextColor(Color.parseColor(stackTitleColor));
             title.setText(this.title);
@@ -195,10 +195,8 @@ public class CardStack extends AbstractCard {
             return false;
         }
 
-        if (card.convert(convertCardView))
-            return true;
+        return card.convert(convertCardView);
 
-        return false;
     }
 
     public Card remove(int index) {

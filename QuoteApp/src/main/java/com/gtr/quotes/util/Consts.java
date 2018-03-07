@@ -5,5 +5,5 @@ package com.gtr.quotes.util;
  */
 public class Consts {
     public static final String API_URL = "http://107.170.163.104/q/";//http://107.170.163.104/q/?page=SmartQuote&risk=100
-    public static final String UNKOWN_PERSON_URL = "http://wiki.erepublik.com/images/b/b7/Unknown_Person.jpg";
+    public static final String UNKNOWN_PERSON_URL = "http://wiki.erepublik.com/images/b/b7/Unknown_Person.jpg";
 }

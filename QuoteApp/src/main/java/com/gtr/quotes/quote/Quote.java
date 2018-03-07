@@ -1,122 +1,68 @@
 package com.gtr.quotes.quote;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Log;
-
+import com.galtashma.lazyparse.LazyParseObject;
 import com.gtr.quotes.util.Consts;
+import com.parse.ParseClassName;
 
-public class Quote implements Parcelable {
+import java.util.ArrayList;
 
-    public static enum Status {
+@ParseClassName("Quote")
+public class Quote extends LazyParseObject {
+
+    public enum Status {
         DONE_SUCCESSFUL,
         LOADING,
         ERROR
     }
 
-    protected String text = "";
-    protected String author = "";
-    protected String id = "";
-    protected double riskTaken = 0.01;
-    protected String artist_icon_url = Consts.UNKOWN_PERSON_URL;
+    public Quote() {}
 
-    public Quote() {
-
-    }
-
-    public Quote(String text, String author, String id) {
-        super();
-        this.id = id;
-        this.author = author;
-        this.text = text;
-    }
-
-    public Quote(String text, String author, String id, String artistIconUrl) {
-        super();
-        this.id = id;
-        this.author = author;
-        this.text = text;
-        this.artist_icon_url = artistIconUrl;
-    }
-
-    public Quote(Parcel parcel) {
-        this.id = parcel.readString();
-        this.author = parcel.readString();
-        this.text = parcel.readString();
-        this.artist_icon_url = Consts.UNKOWN_PERSON_URL;
-        ;
+    public static Quote createStaticQuote(String text, String author, String artistIConUrl){
+        Quote q = new Quote();
+        q.setText(text);
+        q.setAuthor(author);
+        q.setArtistIconUrl(artistIConUrl);
+        return q;
     }
 
     public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+        return getString("text");
     }
 
     public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
+        return getString("author");
     }
 
     public String getId() {
+        String id = getObjectId();
+        if (id == null){
+            return "";
+        }
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public double getRiskTaken() {
-        return riskTaken;
-    }
-
-    public void setRiskTaken(double riskTaken) {
-        this.riskTaken = riskTaken;
-    }
-
-    private static boolean isEmptyString(String s) {
-        if (s == null)
-            return true;
-        if (s.equals("null") || s.isEmpty())
-            return true;
-        return false;
-    }
-
-    /**
-     * Get the status of the quote
-     *
-     * @return returns the status of the quote at that moment
-     */
-    public Status getStatus() {
-        final String EMPTY_MD5 = "d41d8cd98f00b204e9800998ecf8427e";
-
-        Log.i("Quotes", "get status. id: " + id);
-
-        if (isEmptyString(id) || id.equals(EMPTY_MD5) || isEmptyString(author) || isEmptyString(text)) {
-            Log.w("Quotes", "Empty Quote. id: " + id);
-            return Status.ERROR;
-        }
-
-        return Status.DONE_SUCCESSFUL;
-    }
-
     public String getWikipediaLink() {
-        return "http://en.wikipedia.org/w/index.php?search=" + author.replace(' ', '+');
+        return "http://en.wikipedia.org/w/index.php?search=" + getAuthor().replace(' ', '+');
     }
 
     public String getArtistIconUrl() {
-        if (artist_icon_url != null)
-            return artist_icon_url;
-        return Consts.UNKOWN_PERSON_URL;
+        String iconUrl = getString("artistIconUrl");
+        if (iconUrl != null && !iconUrl.isEmpty())
+            return iconUrl;
+
+        return Consts.UNKNOWN_PERSON_URL;
     }
 
-    public void setArtistIconUrl(String artistIconUrl) {
-        this.artist_icon_url = artistIconUrl;
+    private void setAuthor(String author) {
+        put("author", author);
+    }
+
+    private void setText(String text) {
+        put("text", text);
+    }
+
+    private void setArtistIconUrl(String artistIconUrl) {
+        put("artistIconUrl", artistIconUrl);
     }
 
     @Override
@@ -128,16 +74,32 @@ public class Quote implements Parcelable {
         return super.equals(o);
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    private static boolean isEmptyString(String s) {
+        if (s == null) {
+            return true;
+        }
+        return s.equals("null") || s.isEmpty();
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int flags) {
-        parcel.writeString(id);
-        parcel.writeString(author);
-        parcel.writeString(text);
+    public static Quote createStaticQuote(QuoteStruct qs){
+        Quote quote = createStaticQuote(qs.text, qs.author, qs.artistIconUrl);
+        quote.setObjectId(qs.id);
+        return quote;
+    }
+
+    public QuoteStruct getData(){
+        return new QuoteStruct(getId(), getText(), getAuthor(), getArtistIconUrl());
+    }
+
+    class QuoteStruct {
+        String id, text, author, artistIconUrl;
+
+        QuoteStruct(String id, String text, String author, String artistIconUrl) {
+            this.id = id;
+            this.text = text;
+            this.author = author;
+            this.artistIconUrl = artistIconUrl;
+        }
     }
 
 
